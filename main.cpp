@@ -6,21 +6,28 @@
 using namespace cv;
 using namespace std;
 
-int main(int argc, char**argv) {
-    std::cout << "Hello, World!" << std::endl;
-//    IplImage * pImg;
-//    if (argc == 2 && (pImg = cvLoadImage(argv[1], 1)) != 0) {
-//        cvNamedWindow("Image", 1);
-//        cvShowImage("Image", pImg);
-//
-//        cvWaitKey(0);
-//
-//        cvDestroyWindow("Image");
-//        cvReleaseImage( & pImg );
-//        return 0;
-//    }
+int main1(int argc, char**argv) {
 
-    Mat image = imread("/home/pc/Desktop/timg.jpeg");
+    std::cout << "Hello, World!" << std::endl;
+
+    IplImage * pImg = cvLoadImage("/home/pc/Desktop/1.jpeg", 1);
+    //if (argc == 2 && (pImg = cvLoadImage(argv[1], 1)) != 0) {
+    if (false){
+        namedWindow("Image", CV_WINDOW_AUTOSIZE);
+
+        cvShowImage("Image", pImg);
+
+        cvWaitKey(0);
+
+        cvDestroyWindow("Image");
+        cvReleaseImage( & pImg );
+        return 0;
+    }
+
+    Mat image = imread("/home/pc/Desktop/111.jpg");
+    if (image.empty()){
+        printf("空的");
+    }
 
     Mat gray;
     cvtColor(image, gray, COLOR_RGB2GRAY);

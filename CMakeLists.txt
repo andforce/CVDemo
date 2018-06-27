@@ -6,5 +6,5 @@ find_package( OpenCV REQUIRED )
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(CVDemo main.cpp)
+add_executable(CVDemo main.cpp lesson02.cpp)
 target_link_libraries(CVDemo ${OpenCV_LIBS}) #加入opencv lib
