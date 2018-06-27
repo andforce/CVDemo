@@ -8,7 +8,7 @@
 using namespace cv;
 using namespace std;
 
-int main(int argc, char**argv) {
+int main1(int argc, char**argv) {
     printf("加载图像练习\n");
 
     Mat src = imread("/home/pc/Desktop/111.jpg", IMREAD_UNCHANGED);
