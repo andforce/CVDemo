@@ -30,13 +30,14 @@ int main(int argc, char **argv) {
 
     //二值化
     Mat thresh;
-    threshold(gray, thresh, 0, 255, THRESH_BINARY_INV | THRESH_OTSU);
+    threshold(gray, thresh, 150, 255, THRESH_BINARY_INV | THRESH_OTSU);
 
 
     // 消除噪点
     morphologyEx(thresh, thresh, MORPH_CLOSE, getStructuringElement(MORPH_RECT, Size(15, 15)), Point(-1, -1), 2);
     //morphologyEx(thresh, thresh, MORPH_OPEN, getStructuringElement(MORPH_RECT, Size(3, 3)), Point(-1,-1), 2);
 
+    imwrite("/home/pc/Desktop/OUT/two.png", thresh);
 
     // 查找轮廓,的出来的是不规则的区域
     vector<vector<Point>> contours;
@@ -61,12 +62,6 @@ int main(int argc, char **argv) {
 
             }
         }
-    }
-
-    for (int i = 0; i < contours.size(); i++) {
-        if (contourArea(contours[i]) < 10000) {
-            continue;
-        }
 
         Rect rect = boundingRect(contours[i]);
         //rectangle(image, rect, Scalar(0, 0, 255), 1);
@@ -75,6 +70,19 @@ int main(int argc, char **argv) {
         stream << i;
         imwrite("/home/pc/Desktop/OUT/" + stream.str() + ".png", bgTransparentMat(rect));
     }
+
+//    for (int i = 0; i < contours.size(); i++) {
+//        if (contourArea(contours[i]) < 10000) {
+//            continue;
+//        }
+//
+//        Rect rect = boundingRect(contours[i]);
+//        //rectangle(image, rect, Scalar(0, 0, 255), 1);
+//
+//        ostringstream stream;
+//        stream << i;
+//        imwrite("/home/pc/Desktop/OUT/" + stream.str() + ".png", bgTransparentMat(rect));
+//    }
 
 //    imwrite("/home/pc/Desktop/bgTransparentMat.png", bgTransparentMat);
 //
